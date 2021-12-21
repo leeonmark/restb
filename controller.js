@@ -67,3 +67,15 @@ exports.ubahData = function (req, res) {
         });
 };
 
+// menghapus data berdasarkan id
+exports.hapusData = function (req, res) {
+    var id = req.body.id;
+    connection.query('DELETE FROM data WHERE id=?', [id],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil Menghapus Data", res)
+            }
+        });
+};
