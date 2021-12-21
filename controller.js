@@ -48,3 +48,22 @@ exports.tambahData = function (req, res) {
             }
         });
 };
+
+// mengubah data berdasarkan id
+exports.ubahData = function (req, res) {
+    var id = req.body.id;
+    var currentac = req.body.currentac;
+    var voltageac = req.body.voltageac;
+    var currentdc = req.body.currentdc;
+    var voltagedc = req.body.voltagedc;
+
+    connection.query('UPDATE data SET currentac=?, voltageac=?, currentdc=?, voltagedc=? WHERE id=?', [currentac, voltageac, currentdc, voltagedc, id],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil Merubah Data", res)
+            }
+        });
+};
+
