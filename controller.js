@@ -17,3 +17,16 @@ exports.tampilsemuadata = function (req, res) {
         }
     });
 };
+
+// menampilkan semua data berdasarkan id
+exports.tampildataberdasarkanid = function (req, res) {
+    let id = req.params.id;
+    connection.query('SELECT * FROM data WHERE id = ?', [id],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok(rows, res);
+            }
+        });
+};
