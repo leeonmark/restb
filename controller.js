@@ -30,3 +30,21 @@ exports.tampildataberdasarkanid = function (req, res) {
             }
         });
 };
+
+// menambahkan data
+exports.tambahData = function (req, res) {
+    var currentac = req.body.currentac;
+    var voltageac = req.body.voltageac;
+    var currentdc = req.body.currentdc;
+    var voltagedc = req.body.voltagedc;
+
+    connection.query('INSERT INTO data (currentac,voltageac,currentdc,voltagedc) VALUES(?,?,?,?)',
+        [currentac, voltageac, currentdc, voltagedc],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil Menambahkan Data!", res)
+            }
+        });
+};
